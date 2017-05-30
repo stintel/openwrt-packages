@@ -76,6 +76,7 @@ PKG_MOD_AVAILABLE:= \
 	revocation \
 	sha1 \
 	sha2 \
+	sha3 \
 	smp \
 	socket-default \
 	socket-dynamic \
@@ -199,6 +200,7 @@ $(call Package/strongswan/Default)
 	+strongswan-mod-revocation \
 	+strongswan-mod-sha1 \
 	+strongswan-mod-sha2 \
+	+strongswan-mod-sha3 \
 	+strongswan-mod-smp \
 	+strongswan-mod-socket-default \
 	+strongswan-mod-sql \
@@ -663,6 +665,7 @@ $(eval $(call BuildPlugin,resolve,DNS resolver,))
 $(eval $(call BuildPlugin,revocation,X509 CRL/OCSP revocation,))
 $(eval $(call BuildPlugin,sha1,SHA1 crypto,))
 $(eval $(call BuildPlugin,sha2,SHA2 crypto,))
+$(eval $(call BuildPlugin,sha3,SHA3 crypto,))
 $(eval $(call BuildPlugin,smp,SMP configuration and control interface,+PACKAGE_strongswan-mod-smp:libxml2))
 $(eval $(call BuildPlugin,socket-default,default socket implementation for charon,))
 $(eval $(call BuildPlugin,socket-dynamic,dynamic socket implementation for charon,))
