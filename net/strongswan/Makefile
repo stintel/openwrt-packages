@@ -40,6 +40,7 @@ PKG_MOD_AVAILABLE:= \
 	dhcp \
 	dnskey \
 	duplicheck \
+	eap-gtc \
 	eap-identity \
 	eap-md5 \
 	eap-mschapv2 \
@@ -172,6 +173,7 @@ $(call Package/strongswan/Default)
 	+strongswan-mod-dhcp \
 	+strongswan-mod-dnskey \
 	+strongswan-mod-duplicheck \
+	+strongswan-mod-eap-gtc \
 	+strongswan-mod-eap-identity \
 	+strongswan-mod-eap-md5 \
 	+strongswan-mod-eap-mschapv2 \
@@ -682,6 +684,7 @@ $(eval $(call BuildPlugin,des,DES crypto,))
 $(eval $(call BuildPlugin,dhcp,DHCP based attribute provider,))
 $(eval $(call BuildPlugin,dnskey,DNS RR key decoding,))
 $(eval $(call BuildPlugin,duplicheck,advanced duplicate checking,))
+$(eval $(call BuildPlugin,eap-gtc,EAP GTC auth,))
 $(eval $(call BuildPlugin,eap-identity,EAP identity helper,))
 $(eval $(call BuildPlugin,eap-md5,EAP MD5 (CHAP) EAP auth,))
 $(eval $(call BuildPlugin,eap-mschapv2,EAP MS-CHAPv2 EAP auth,+strongswan-mod-md4 +strongswan-mod-des))
