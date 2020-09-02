@@ -397,3 +397,7 @@ stop_service() {
 		rm -f "/var/run/${file}"
 	done
 }
+
+service_started() {
+	/sbin/hotplug-call swanctl
+}

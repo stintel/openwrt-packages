@@ -1,0 +1,14 @@
+#!/bin/sh
+
+try=0
+max=10
+
+while [ $((++try)) -le $max ]; do
+	if [ -S /var/run/charon.vici ]; then
+		/usr/sbin/swanctl --load-all --noprompt 2>/dev/null && \
+			logger -t hotplug "swanctl: loaded credentials, authorities, pools and connections"
+		break
+	else
+		sleep 1
+	fi
+done

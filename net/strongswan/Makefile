@@ -9,7 +9,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=strongswan
 PKG_VERSION:=5.9.0
-PKG_RELEASE:=1
+PKG_RELEASE:=2
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
 PKG_SOURCE_URL:=https://download.strongswan.org/ https://download2.strongswan.org/
@@ -531,6 +531,9 @@ define Package/strongswan-swanctl/install
 	$(CP) $(PKG_INSTALL_DIR)/etc/swanctl/swanctl.conf $(1)/etc/swanctl/
 	$(INSTALL_DIR) $(1)/usr/sbin
 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/sbin/swanctl $(1)/usr/sbin/
+	$(INSTALL_DIR) $(1)/etc/hotplug.d/swanctl
+	$(CP) ./files/etc/hotplug.d/swanctl/01-load-all \
+		$(1)/etc/hotplug.d/swanctl/01-load-all
 endef
 
 define Package/strongswan-libtls/install
