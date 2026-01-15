@@ -148,6 +148,7 @@ TARGET_CXXFLAGS+=-Os -fvisibility=hidden -flto -fno-ipa-cp -DNDEBUG \
 	$(if $(call IsEnabled,DNSDIST_WEB),,-DDISABLE_WEB_CONFIG -DDISABLE_BUILTIN_HTML -DDISABLE_LUA_WEB_HANDLERS)
 
 CONFIGURE_ARGS+= \
+	--with-boost=$(STAGING_DIR)/usr/include \
 	--with-pic \
 	--with-lua=luajit \
 	--with-libcap \
