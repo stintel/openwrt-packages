@@ -30,5 +30,6 @@ Subject: [PATCH] Do not run profile task during cross build
 -if test -z "$PROFILE_TASK"
 +if test -z "$PROFILE_TASK" -a "x$cross_compiling" = xno
  then
- 	PROFILE_TASK='-m test --pgo --timeout=$(TESTTIMEOUT)'
+-	PROFILE_TASK='-m test --pgo --timeout=$(TESTTIMEOUT)'
++	PROFILE_TASK='-m test --pgo -x test_json --timeout=$(TESTTIMEOUT)'
  fi
