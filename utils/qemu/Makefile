@@ -55,7 +55,7 @@ define Package/qemu-ga
   SUBMENU:=Virtualization
   TITLE:=QEMU Guest Agent
   URL:=https://www.qemu.org
-  DEPENDS:= +glib2 +virtio-console-helper +libstdcpp +libudev $(QEMU_DEPS_IN_GUEST)
+  DEPENDS:= +glib2-core +virtio-console-helper +libstdcpp +libudev $(QEMU_DEPS_IN_GUEST)
 endef
 
 define Package/qemu-ga/install
