@@ -6,12 +6,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=readsb
-PKG_VERSION:=3.9.0
-PKG_RELEASE:=3
+PKG_VERSION:=3.16.15
+PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=https://codeload.github.com/Mictronics/readsb/tar.gz/v$(PKG_VERSION)?
-PKG_HASH:=234e2f5f45d69d8be376272e9a08be54bdc48ed5ad7ebad2c4374bbd754d9426
+PKG_SOURCE_URL:=https://codeload.github.com/wiedehopf/readsb/tar.gz/v$(PKG_VERSION)?
+PKG_HASH:=7a8c3886c6c548578e9a65f7b45a993bcd49aa52f70d5bffe1e76b4cbca9998f
 
 PKG_LICENSE:=GPL-3.0-or-later
 PKG_LICENSE_FILES:=COPYING LICENSE
@@ -27,7 +27,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/readsb/default
   SECTION:=utils
   CATEGORY:=Utilities
-  DEPENDS:=+libncurses
+  DEPENDS:=+libncurses +libzstd +zlib
   TITLE:=Mode-S/ADSB/TIS decoder for various devices
   URL:=https://github.com/Mictronic/readsb
 endef
@@ -45,12 +45,21 @@ endef
 
 MAKE_FLAGS += \
 	BLADERF=no \
-	CFLAGS="$(TARGET_CFLAGS)" \
-	RTLSDR=yes \
+	CFLAGS+="$(TARGET_CFLAGS)" \
+	LIBS+="$(TARGET_LDFLAGS)" \
+	SDR_OBJ+=sdr_rtlsdr.o \
 	UNAME="Linux"
+
+TARGET_CFLAGS += \
+	-D_GNU_SOURCE \
+	-DENABLE_RTLSDR \
+	-DREADSB_SHORT_VERSION='\"$(PKG_VERSION)\"' \
+	-DREADSB_SHORT_COMMIT='\"nogit\"'
+
 
 TARGET_LDFLAGS += \
 	$(if $(CONFIG_USE_GLIBC),,-largp) \
+	-lm -lncursesw -lpthread -lrtlsdr -lusb-1.0 -lz -lzstd -pthread \
 	-Wl,--as-needed
 
 define Package/readsb/conffiles
