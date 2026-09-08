@@ -48,6 +48,7 @@ PKG_MOD_AVAILABLE:= \
 	$(if $(CONFIG_STRONGSWAN_INCLUDE_INSECURE),eap-mschapv2,) \
 	eap-radius \
 	eap-tls \
+	error-notify \
 	farp \
 	fips-prf \
 	forecast \
@@ -179,6 +180,7 @@ $(call Package/strongswan/Default)
 	+STRONGSWAN_INCLUDE_INSECURE:strongswan-mod-eap-mschapv2 \
 	+strongswan-mod-eap-radius \
 	+strongswan-mod-eap-tls \
+	+strongswan-mod-error-notify \
 	+strongswan-mod-farp \
 	+strongswan-mod-fips-prf \
 	+strongswan-mod-forecast \
@@ -675,6 +677,7 @@ $(eval $(call BuildPlugin,eap-md5,EAP MD5 (CHAP) EAP auth,))
 $(eval $(call BuildPlugin,eap-mschapv2,EAP MS-CHAPv2 EAP auth,+strongswan-mod-md4 +strongswan-mod-des))
 $(eval $(call BuildPlugin,eap-radius,EAP RADIUS auth,))
 $(eval $(call BuildPlugin,eap-tls,EAP TLS auth,+strongswan-libtls))
+$(eval $(call BuildPlugin,error-notify,notify errors in keying daemon via UNIX socket,))
 $(eval $(call BuildPlugin,farp,fake arp respsonses,))
 $(eval $(call BuildPlugin,fips-prf,FIPS PRF crypto,+strongswan-mod-sha1))
 $(eval $(call BuildPlugin,forecast,forward multi/broadcast traffic,+libip4tc +kmod-ipt-conntrack-extra))
