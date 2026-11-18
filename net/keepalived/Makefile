@@ -8,12 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=keepalived
-PKG_VERSION:=2.3.3
-PKG_RELEASE:=5
+PKG_VERSION:=2.4.3
+PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=https://www.keepalived.org/software
-PKG_HASH:=2288c5c7609fa452782b7acefa19acce742d0204dc17f54d36da46b10f8b590c
+PKG_HASH:=a0faef8e401c143487b131b526df7541c1e33d9b8814642fa9dfe8bb250a9632
 
 PKG_CPE_ID:=cpe:/a:keepalived:keepalived
 PKG_LICENSE:=GPL-2.0-or-later
